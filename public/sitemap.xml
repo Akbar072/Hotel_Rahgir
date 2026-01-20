@@ -1,4 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://hotelrahgir.netlify.app/</loc></url>
+
+  <url>
+    <loc>https://hotelrahgir.netlify.app/</loc>
+  </url>
+
+  <url>
+    <loc>https://hotelrahgir.netlify.app/menu</loc>
+  </url>
+
+  <url>
+    <loc>https://hotelrahgir.netlify.app/gallery</loc>
+  </url>
+
+  <url>
+    <loc>https://hotelrahgir.netlify.app/services</loc>
+  </url>
+
+  <url>
+    <loc>https://hotelrahgir.netlify.app/tariff</loc>
+  </url>
+
+  <url>
+    <loc>https://hotelrahgir.netlify.app/rules</loc>
+  </url>
+
+  <url>
+    <loc>https://hotelrahgir.netlify.app/contact</loc>
+  </url>
+
 </urlset>
