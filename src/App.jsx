@@ -66,15 +66,13 @@ const Layout = ({ children }) => {
           </div>
 
           <h2
-            className="text-3xl md:text-4xl lg:text-5xl
-             text-center uppercase tracking-wide
-             text-yellow-400 font-bold
-             drop-shadow-md mb-4"
-            style={{ fontFamily: "Playfair Display, serif" }}
+            className="text-4xl md:text-5xl text-center tracking-widest uppercase drop-shadow-lg mb-6
+             bg-gradient-to-r from-yellow-600 via-yellow-300 to-yellow-600
+             bg-clip-text text-transparent"
+            style={{ fontFamily: "Cinzel, serif" }}
           >
-            Hotel Rahgir & Guest House
+            HOTEL RAHGIR & GUEST HOUSE
           </h2>
-
 
           <nav className="bg-gray-700 rounded-md py-2">
             <ul className="flex flex-wrap justify-center gap-4 text-base md:text-lg font-medium">
@@ -85,8 +83,8 @@ const Layout = ({ children }) => {
                     <Link
                       to={to}
                       className={`px-3 py-1 transition-colors ${isActive
-                        ? "text-orange-400"
-                        : "text-white hover:text-orange-400"
+                          ? "text-orange-400"
+                          : "text-white hover:text-orange-400"
                         }`}
                     >
                       {name}
