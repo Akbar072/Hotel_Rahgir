@@ -65,15 +65,19 @@ const Layout = ({ children }) => {
             />
           </div>
 
-          <h2
-            className="text-3xl md:text-4xl lg:text-5xl
-             text-center uppercase tracking-wide
-             text-yellow-400 font-bold
-             drop-shadow-md mb-4"
-            style={{ fontFamily: "Playfair Display, serif" }}
+          <h1
+            className="
+    text-3xl md:text-4xl lg:text-5xl
+    text-center uppercase tracking-widest
+    font-bold
+    text-yellow-400
+    drop-shadow-md
+  "
+            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
-            Hotel Rahgir & Guest House
-          </h2>
+            HOTEL RAHGIR & GUEST HOUSE
+          </h1>
+
 
 
           <nav className="bg-gray-700 rounded-md py-2">
