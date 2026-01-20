@@ -1,4 +1,4 @@
-import galleryImages from "../data/galleryImages";
+import galleryImages from "../data/GalleryImages";
 import SectionTitle from "./SectionTitle";
 
 const Gallery = () => (
