@@ -65,7 +65,12 @@ const Layout = ({ children }) => {
             />
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-extrabold text-center tracking-widest uppercase drop-shadow-lg font-serif mb-6 bg-gradient-to-r from-yellow-600 via-yellow-300 to-yellow-600 bg-clip-text text-transparent">
+          <h2
+            className="text-4xl md:text-5xl text-center tracking-widest uppercase drop-shadow-lg mb-6
+             bg-gradient-to-r from-yellow-600 via-yellow-300 to-yellow-600
+             bg-clip-text text-transparent"
+            style={{ fontFamily: "Cinzel, serif" }}
+          >
             HOTEL RAHGIR & GUEST HOUSE
           </h2>
 
@@ -77,11 +82,10 @@ const Layout = ({ children }) => {
                   <li key={to}>
                     <Link
                       to={to}
-                      className={`px-3 py-1 transition-colors ${
-                        isActive
+                      className={`px-3 py-1 transition-colors ${isActive
                           ? "text-orange-400"
                           : "text-white hover:text-orange-400"
-                      }`}
+                        }`}
                     >
                       {name}
                     </Link>
