@@ -66,10 +66,15 @@ const Layout = ({ children }) => {
           </div>
 
           <h2
-            className="text-3xl md:text-4xl lg:text-5xl
-             text-center uppercase tracking-wide
-             text-yellow-600 font-bold
-             drop-shadow-sm mb-4"
+            className="
+    text-3xl md:text-4xl lg:text-5xl
+    text-center uppercase tracking-widest
+    font-bold mb-5
+    bg-gradient-to-r 
+    from-yellow-700 via-yellow-500 to-yellow-700
+    bg-clip-text text-transparent
+    drop-shadow-md
+  "
             style={{ fontFamily: "Playfair Display, serif" }}
           >
             Hotel Rahgir & Guest House
