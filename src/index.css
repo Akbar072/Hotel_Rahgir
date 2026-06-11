@@ -1,3 +1,480 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ═══════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #2D2D2D;
+    background-color: #0c0c1d;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  ::selection {
+    background-color: #D4A843;
+    color: white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0c0c1d;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #D4A843, #A67F2E);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #F5D17A, #D4A843);
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   COMPONENT UTILITIES
+   ═══════════════════════════════════════════════ */
+@layer components {
+
+  /* ── Glass card ── */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* ── Gold gradient text ── */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #F5D17A, #D4A843, #F5D17A);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Gradient border card ── */
+  .gradient-border {
+    position: relative;
+    border: none !important;
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(135deg, rgba(212,168,67,0.4), rgba(212,168,67,0.05), rgba(212,168,67,0.3));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    transition: all 0.4s ease;
+  }
+  .gradient-border:hover::before {
+    padding: 2px;
+    background: linear-gradient(135deg, #D4A843, #F5D17A, #D4A843, #F5D17A);
+  }
+
+  /* ── Card hover lift (enhanced) ── */
+  .card-hover {
+    transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      0 25px 50px rgba(0, 0, 0, 0.08),
+      0 0 30px rgba(212, 168, 67, 0.06);
+  }
+
+  /* ── Glow card ── */
+  .glow-card {
+    position: relative;
+    overflow: hidden;
+  }
+  .glow-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212,168,67,0.06) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .glow-card:hover::after {
+    opacity: 1;
+  }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+
+  /* ── Navbar link ── */
+  .nav-link {
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #D4A843, transparent);
+    transition: width 0.35s ease;
+  }
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+
+  /* ── Form input ── */
+  .form-input {
+    width: 100%;
+    padding: 0.85rem 1.1rem;
+    border: 1.5px solid #E8DCC8;
+    border-radius: 0.85rem;
+    background: #FFFDF8;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.35s ease;
+    outline: none;
+  }
+  .form-input:focus {
+    border-color: #D4A843;
+    box-shadow: 0 0 0 4px rgba(212, 168, 67, 0.12), 0 0 20px rgba(212, 168, 67, 0.06);
+    background: #fff;
+  }
+  .form-input::placeholder {
+    color: #B0A898;
+  }
+
+  /* ── Star rating ── */
+  .star-rating {
+    color: #F59E0B;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+  }
+
+  /* ── Shimmer button ── */
+  .btn-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+  }
+  .btn-shimmer:hover::before {
+    left: 100%;
+  }
+
+  /* ── Section pattern (dot grid) ── */
+  .dot-pattern {
+    background-image: radial-gradient(rgba(212,168,67,0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* ── Noise texture overlay ── */
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   SWIPER
+   ═══════════════════════════════════════════════ */
+.swiper-button-prev,
+.swiper-button-next {
+  color: #D4A843 !important;
+  background: rgba(12, 12, 29, 0.6);
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50%;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 168, 67, 0.2);
+  transition: all 0.35s ease;
+  z-index: 25 !important;
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background: rgba(12, 12, 29, 0.85);
+  border-color: rgba(212, 168, 67, 0.5);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(212, 168, 67, 0.15);
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 1rem !important;
+  font-weight: bold;
+}
+.swiper-pagination-bullet {
+  background: #D4A843 !important;
+  opacity: 0.3;
+  width: 10px;
+  height: 10px;
+  transition: all 0.4s ease;
+  z-index: 25 !important;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  width: 32px;
+  border-radius: 5px;
+  box-shadow: 0 0 12px rgba(212, 168, 67, 0.4);
+}
+
+/* ═══════════════════════════════════════════════
+   LIGHTBOX
+   ═══════════════════════════════════════════════ */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 6, 15, 0.95);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+.lightbox-image {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 0 60px rgba(212, 168, 67, 0.1);
+}
+
+/* ═══════════════════════════════════════════════
+   FLOATING BUTTONS
+   ═══════════════════════════════════════════════ */
+.floating-btn {
+  position: fixed;
+  z-index: 50;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.floating-btn:hover {
+  transform: scale(1.12) translateY(-2px);
+}
+.floating-btn.whatsapp {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  right: 24px;
+  bottom: 24px;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.35);
+}
+.floating-btn.whatsapp:hover {
+  box-shadow: 0 8px 32px rgba(37, 211, 102, 0.5);
+}
+.floating-btn.call-btn {
+  background: linear-gradient(135deg, #D4A843, #F5D17A, #D4A843);
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+  right: 24px;
+  bottom: 96px;
+  box-shadow: 0 6px 24px rgba(212, 168, 67, 0.35);
+}
+.floating-btn.call-btn:hover {
+  box-shadow: 0 8px 32px rgba(212, 168, 67, 0.5);
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+.pulse-ring { position: relative; }
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  animation: pulse-ring 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.floating-btn.whatsapp.pulse-ring::before { border-color: #25D366; }
+.floating-btn.call-btn.pulse-ring::before { border-color: #D4A843; }
+
+/* ═══════════════════════════════════════════════
+   MOBILE MENU
+   ═══════════════════════════════════════════════ */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 6, 15, 0.6);
+  z-index: 40;
+  backdrop-filter: blur(6px);
+}
+.mobile-menu-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 300px;
+  background: linear-gradient(180deg, #0c0c1d, #141428);
+  z-index: 50;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+  border-left: 1px solid rgba(212, 168, 67, 0.1);
+}
+
+/* ═══════════════════════════════════════════════
+   ACCORDION
+   ═══════════════════════════════════════════════ */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1), padding 0.3s ease;
+}
+.accordion-content.open {
+  max-height: 1200px;
+}
+
+/* ═══════════════════════════════════════════════
+   HERO SWIPER
+   ═══════════════════════════════════════════════ */
+.hero-swiper .swiper-button-prev,
+.hero-swiper .swiper-button-next {
+  display: flex;
+  z-index: 25 !important;
+}
+.hero-swiper .swiper-pagination {
+  z-index: 25 !important;
+}
+
+/* ═══════════════════════════════════════════════
+   MENU TABS
+   ═══════════════════════════════════════════════ */
+.menu-tab { position: relative; white-space: nowrap; }
+
+/* ═══════════════════════════════════════════════
+   SCROLL-TO-TOP
+   ═══════════════════════════════════════════════ */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 168px;
+  right: 28px;
+  z-index: 45;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(12, 12, 29, 0.75);
+  color: #D4A843;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid rgba(212, 168, 67, 0.15);
+  backdrop-filter: blur(10px);
+  transition: all 0.35s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+.scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+.scroll-top-btn:hover {
+  background: rgba(12, 12, 29, 0.95);
+  border-color: rgba(212, 168, 67, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(212, 168, 67, 0.15);
+}
+
+/* ═══════════════════════════════════════════════
+   ANIMATED GRADIENT BG
+   ═══════════════════════════════════════════════ */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ═══════════════════════════════════════════════
+   WAVE SECTION DIVIDER
+   ═══════════════════════════════════════════════ */
+.wave-divider {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  margin-top: -1px;
+}
+.wave-divider svg {
+  display: block;
+  width: 100%;
+  height: 50px;
+}
+@media (min-width: 768px) {
+  .wave-divider svg { height: 70px; }
+}
+
+/* ═══════════════════════════════════════════════
+   DECORATIVE ORB
+   ═══════════════════════════════════════════════ */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(60px);
+}
+
+/* ═══════════════════════════════════════════════
+   HIDE SCROLLBAR ON TABS
+   ═══════════════════════════════════════════════ */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ═══════════════════════════════════════════════
+   COUNTER ANIMATION
+   ═══════════════════════════════════════════════ */
+@property --num {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}

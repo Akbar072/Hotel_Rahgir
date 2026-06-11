@@ -1,132 +1,158 @@
+import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import SectionTitle from "./SectionTitle";
+import { Phone, Mail, MapPin, Send, CheckCircle } from "lucide-react";
+import { WaveDivider } from "../App";
 
-const Contact = () => (
-  <>
-    {/* ================= SEO ================= */}
-    <Helmet>
-      <title>
-        Contact Hotel Rahgir & Guest House | Chikhli Near Valsad
-      </title>
-      <meta
-        name="description"
-        content="Contact Hotel Rahgir & Guest House in Chikhli near Valsad for room booking, restaurant enquiry and location details. Call us or visit our hotel today."
-      />
-    </Helmet>
-    {/* ======================================= */}
-
-    <div className="bg-gradient-to-br from-white via-yellow-50 to-white py-12 px-4 sm:px-8 lg:px-16">
-      <SectionTitle>Contact Us</SectionTitle>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10 text-gray-700">
-        {/* Contact Info */}
-        <div className="space-y-5 text-base leading-relaxed">
-          <div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">
-              Hotel Rahgir & Guest House
-            </h3>
-            <p>
-              National Highway No. 48, Vaghadhara, Chikhli – Valsad Road, Gujarat
-              396375
-            </p>
-          </div>
-
-          {/* Phone */}
-          <div className="flex items-start space-x-3">
-            <svg
-              className="w-5 h-5 text-yellow-600 mt-1"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M2 5a2 2 0 012-2h3.5a1 1 0 01.95.69l1.3 3.46a1 1 0 01-.26 1.06l-1.55 1.55a9 9 0 006.1 6.1l1.55-1.55a1 1 0 011.06-.26l3.46 1.3a1 1 0 01.69.95V20a2 2 0 01-2 2h-2c-8 0-14-6-14-14V5z"
-              />
-            </svg>
-
-            <a
-              href="tel:+919909432530"
-              className="text-blue-700 font-medium hover:underline"
-            >
-              +91 99094 32530
-            </a>
-          </div>
-
-          {/* Email */}
-          <div className="flex items-start space-x-3">
-            <svg
-              className="w-5 h-5 text-yellow-600 mt-1"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M16 12H8m0 0L4 8m4 4l-4 4m12 0h-8"
-              />
-            </svg>
-
-            <a
-              href="mailto:rahgir2011@gmail.com"
-              className="text-blue-700 font-medium hover:underline"
-            >
-              rahgir2011@gmail.com
-            </a>
-          </div>
-
-          {/* Website */}
-          <div className="flex items-start space-x-3">
-            <svg
-              className="w-5 h-5 text-yellow-600 mt-1"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 3v1m0 16v1m8.49-9H3.51m15.17 7.36l-.71-.71M5.05 5.05l-.71-.71m0 15.12l.71-.71M18.95 5.05l.71-.71"
-              />
-            </svg>
-
-            <a
-              href="https://hotelrahgir.netlify.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-700 font-medium hover:underline"
-            >
-              www.hotelrahgir.com
-            </a>
-          </div>
-        </div>
-
-        {/* Google Map */}
-        <div>
-          <h3 className="text-xl font-semibold text-gray-800 mb-4">
-            Find Us on the Map
-          </h3>
-
-          <div className="rounded-xl overflow-hidden shadow-md border border-yellow-100">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.0504269783364!2d72.99475127476092!3d20.70817679871323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be0ebff6c701e99%3A0x89d7611fb30de03e!2sHotel%20Rahgir%20and%20Guest%20House%20(Pure%20Veg)!5e0!3m2!1sen!2sin!4v1750185981187!5m2!1sen!2sin"
-              width="100%"
-              height="320"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Hotel Rahgir & Guest House Location in Chikhli near Valsad"
-              className="w-full h-full"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </>
+/* WhatsApp icon */
+const WhatsAppIcon = ({ size = 20 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+  </svg>
 );
+
+const Contact = () => {
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("active"); }), { threshold: 0.1 });
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(form)).toString() })
+      .then(() => { setSubmitted(true); form.reset(); })
+      .catch(() => alert("Something went wrong. Please try calling us directly."));
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>Contact Hotel Rahgir &amp; Guest House | Chikhli Near Valsad</title>
+        <meta name="description" content="Contact Hotel Rahgir & Guest House in Chikhli near Valsad for room booking, restaurant enquiry and location details." />
+      </Helmet>
+
+      {/* Hero */}
+      <section className="relative bg-brand py-20 md:py-28 text-center overflow-hidden noise-overlay">
+        <div className="orb w-72 h-72 bg-gold-400/5 -top-20 -right-20 animate-float" />
+        <div className="absolute inset-0 dot-pattern opacity-20" />
+        <div className="relative z-10 container mx-auto px-4">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="h-px w-16 bg-gradient-to-r from-transparent to-gold-400/40" />
+            <span className="text-gold-400/60 text-xs tracking-[0.3em] uppercase font-body">Get in Touch</span>
+            <span className="h-px w-16 bg-gradient-to-l from-transparent to-gold-400/40" />
+          </div>
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-5" style={{ textShadow: "0 4px 20px rgba(0,0,0,0.2)" }}>Contact Us</h2>
+          <p className="text-gray-500 font-body text-base md:text-lg max-w-2xl mx-auto">
+            Reach out for bookings, enquiries, or just to say hello
+          </p>
+        </div>
+      </section>
+
+      <WaveDivider color="#FDF6E8" />
+      <section className="py-16 md:py-24 px-4 bg-cream relative overflow-hidden">
+        <div className="absolute inset-0 dot-pattern opacity-30" />
+        <div className="container mx-auto max-w-6xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Contact cards */}
+            <div className="space-y-5 reveal">
+              {[
+                { href: "tel:+919909432530", icon: <Phone size={22} />, title: "Call Us", value: "+91 99094 32530", sub: "Available 24/7", color: "gold" },
+                { href: "https://wa.me/919909432194?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20Hotel%20Rahgir.", icon: <WhatsAppIcon size={22} />, title: "WhatsApp", value: "+91 99094 32194", sub: "Chat with us anytime", color: "green", external: true },
+                { href: "mailto:rahgir2011@gmail.com", icon: <Mail size={22} />, title: "Email", value: "rahgir2011@gmail.com", sub: "We reply within 24 hours", color: "gold" },
+                { href: "https://maps.app.goo.gl/6rj7CAJg394LrkWEA", icon: <MapPin size={22} />, title: "Visit Us", value: "NH-48, Vaghadhara, Chikhli – Valsad", sub: "Get Directions →", color: "gold", external: true },
+              ].map((c, i) => (
+                <a key={i} href={c.href} {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="card-hover gradient-border glow-card flex items-start gap-4 bg-white rounded-2xl p-6 group">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-500 shadow-lg ${
+                    c.color === "green"
+                      ? "bg-green-50 border border-green-200/60 text-green-500 group-hover:bg-green-600 group-hover:text-white group-hover:border-green-600 shadow-green-500/10"
+                      : "bg-gold-50 border border-gold-200/60 text-gold-500 group-hover:bg-brand group-hover:text-gold-400 group-hover:border-brand shadow-gold-400/10"
+                  }`}>
+                    {c.icon}
+                  </div>
+                  <div>
+                    <h4 className="font-display font-semibold text-brand text-lg mb-0.5">{c.title}</h4>
+                    <p className={`font-body font-medium text-sm ${c.color === "green" ? "text-green-600" : "text-gold-600"}`}>{c.value}</p>
+                    <p className="text-gray-400 text-xs font-body mt-1">{c.sub}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            {/* Form */}
+            <div className="reveal reveal-delay-2">
+              <div className="gradient-border glow-card bg-white rounded-2xl p-8">
+                <h3 className="font-display font-bold text-brand text-2xl mb-2">Send an Inquiry</h3>
+                <p className="text-gray-400 text-sm font-body mb-7">Fill in your details and we&rsquo;ll get back to you shortly.</p>
+
+                {submitted ? (
+                  <div className="text-center py-16">
+                    <div className="w-16 h-16 rounded-full bg-green-50 border border-green-200 flex items-center justify-center mx-auto mb-5">
+                      <CheckCircle size={32} className="text-green-500" />
+                    </div>
+                    <h4 className="font-display font-bold text-brand text-xl mb-2">Thank You!</h4>
+                    <p className="text-gray-500 font-body">We&rsquo;ve received your inquiry and will contact you soon.</p>
+                    <button onClick={() => setSubmitted(false)} className="mt-6 text-gold-600 hover:text-gold-700 font-medium font-body text-sm underline underline-offset-4">Send another</button>
+                  </div>
+                ) : (
+                  <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onSubmit={handleSubmit} className="space-y-5">
+                    <input type="hidden" name="form-name" value="contact" />
+                    <p className="hidden"><label>Don&rsquo;t fill: <input name="bot-field" /></label></p>
+
+                    <div>
+                      <label htmlFor="contact-name" className="block text-sm font-medium text-gray-600 font-body mb-1.5">Full Name *</label>
+                      <input type="text" id="contact-name" name="name" required placeholder="Enter your name" className="form-input" />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div>
+                        <label htmlFor="contact-phone" className="block text-sm font-medium text-gray-600 font-body mb-1.5">Phone *</label>
+                        <input type="tel" id="contact-phone" name="phone" required placeholder="+91 XXXXX XXXXX" className="form-input" />
+                      </div>
+                      <div>
+                        <label htmlFor="contact-email" className="block text-sm font-medium text-gray-600 font-body mb-1.5">Email</label>
+                        <input type="email" id="contact-email" name="email" placeholder="your@email.com" className="form-input" />
+                      </div>
+                    </div>
+                    <div>
+                      <label htmlFor="contact-subject" className="block text-sm font-medium text-gray-600 font-body mb-1.5">Subject</label>
+                      <select id="contact-subject" name="subject" className="form-input" defaultValue="">
+                        <option value="" disabled>Select a topic</option>
+                        <option>Room Booking</option><option>Restaurant Enquiry</option><option>Banquet / Event</option><option>General Inquiry</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label htmlFor="contact-message" className="block text-sm font-medium text-gray-600 font-body mb-1.5">Message *</label>
+                      <textarea id="contact-message" name="message" required rows={4} placeholder="Tell us about your requirements..." className="form-input resize-none" />
+                    </div>
+                    <button type="submit" id="contact-submit"
+                      className="btn-shimmer w-full px-6 py-4 bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-300 hover:to-gold-400 text-brand font-bold rounded-xl transition-all duration-500 shadow-[0_8px_32px_rgba(212,168,67,0.2)] hover:shadow-[0_12px_48px_rgba(212,168,67,0.35)] flex items-center justify-center gap-2 font-body text-sm tracking-wider uppercase">
+                      <Send size={16} /> Send Inquiry
+                    </button>
+                  </form>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Map */}
+          <div className="mt-12 reveal gradient-border glow-card bg-white rounded-2xl overflow-hidden">
+            <div className="p-6 border-b border-gold-100/50 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-gold-50 border border-gold-200/60 flex items-center justify-center text-gold-500">
+                <MapPin size={18} />
+              </div>
+              <h3 className="font-display font-bold text-brand text-xl">Find Us on the Map</h3>
+            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.0504269783364!2d72.99475127476092!3d20.70817679871323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be0ebff6c701e99%3A0x89d7611fb30de03e!2sHotel%20Rahgir%20and%20Guest%20House%20(Pure%20Veg)!5e0!3m2!1sen!2sin!4v1750185981187!5m2!1sen!2sin"
+              width="100%" height="400" loading="lazy" referrerPolicy="no-referrer-when-downgrade"
+              title="Hotel Rahgir & Guest House Location" className="w-full" />
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
 
 export default Contact;

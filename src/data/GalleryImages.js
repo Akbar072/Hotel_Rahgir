@@ -1,23 +1,32 @@
-const GalleryImages = [
-  '/gallery1.jpg',
-  '/gallery2.jpg',
-  '/gallery3.jpg',
-  '/gallery4.jpg',
-  '/gallery5.jpg',
-  '/gallery6.jpg',
-  '/gallery7.jpg',
-  '/gallery8.jpg',
-  '/gallery9.jpg',
-  '/gallery10.jpg',
-  '/gallery11.jpg',
-  '/gallery12.jpg',
-  '/gallery13.jpg',
-  '/gallery14.jpg',
-  '/gallery15.jpg',
-  '/gallery16.jpg',
-  '/gallery17.jpg',
-  '/gallery18.jpg',
-  // '/gallery19.jpg',
+const galleryImages = [
+  "/gallery1.webp",
+  "/gallery2.webp",
+  "/gallery3.webp",
+  "/gallery4.webp",
+  "/gallery5.webp",
+  "/gallery6.webp",
+  "/gallery7.webp",
+  "/gallery8.webp",
+  "/gallery9.webp",
+  "/gallery10.webp",
+  "/gallery11.webp",
+  "/gallery12.webp",
+  "/gallery13.webp",
+  "/gallery14.webp",
+  "/gallery15.webp",
+  "/gallery16.webp",
+  "/gallery17.webp",
+  "/gallery18.webp",
+  "/gallery19.webp",
 ];
 
-export default GalleryImages;
+/* Best images for the hero slider — pick 5 for fast hero load */
+export const heroImages = [
+  "/gallery1.webp",
+  "/gallery3.webp",
+  "/gallery5.webp",
+  "/gallery8.webp",
+  "/gallery10.webp",
+];
+
+export default galleryImages;
