@@ -82,10 +82,10 @@
 
 <body>
   <!-- Hidden forms for Netlify Forms detection -->
-  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+  <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
     <input name="name" /><input name="phone" /><input name="email" /><select name="subject"></select><textarea name="message"></textarea>
   </form>
-  <form name="quick-enquiry" netlify netlify-honeypot="bot-field" hidden>
+  <form name="quick-enquiry" data-netlify="true" netlify-honeypot="bot-field" hidden>
     <input name="name" /><input name="phone" /><textarea name="message"></textarea>
   </form>
   <div id="root"></div>

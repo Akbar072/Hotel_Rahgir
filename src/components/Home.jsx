@@ -227,9 +227,9 @@ const Home = () => {
           </Swiper>
         </div>
 
-        {/* Gradient overlays — z-[5] so Swiper arrows (z-25) stay clickable */}
-        <div className="absolute inset-0 bg-gradient-to-b from-brand/90 via-brand/60 to-brand z-[5] pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand/40 via-transparent to-brand/40 z-[5] pointer-events-none" />
+        {/* Gradient overlays — heavy on mobile for clean look, lighter on desktop to show images */}
+        <div className="absolute inset-0 bg-brand/95 md:bg-gradient-to-b md:from-brand/90 md:via-brand/70 md:to-brand z-[5] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand/50 via-transparent to-brand/50 z-[5] pointer-events-none hidden md:block" />
 
         {/* Decorative orbs */}
         <div className="orb w-96 h-96 bg-gold-400/8 top-1/4 -right-48 animate-float z-[5]" />
