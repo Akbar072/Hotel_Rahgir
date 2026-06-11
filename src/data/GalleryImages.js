@@ -17,7 +17,6 @@ const galleryImages = [
   "/gallery16.webp",
   "/gallery17.webp",
   "/gallery18.webp",
-  "/gallery19.webp",
 ];
 
 /* Best images for the hero slider — pick 5 for fast hero load */
